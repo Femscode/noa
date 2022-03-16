@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 /*
+https://webhooks.hostinger.com/deploy/2a7ad6c97cb40574126c08fe53a65abb
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
