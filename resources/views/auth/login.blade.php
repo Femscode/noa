@@ -84,8 +84,16 @@
 									<a href="/register" class="link-primary fw-bolder">Create an Account</a></div>
 									<!--end::Link-->
 								</div>
-                                <x-auth-validation-errors class="alert alert-danger" :errors="$errors" />
-
+								@if($errors->any())
+                                <div class="alert alert-danger">
+                                    <p><strong>Opps Something went wrong</strong></p>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
 								<!--begin::Heading-->
 								<!--begin::Input group-->
 								<div class="fv-row mb-10">

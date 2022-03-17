@@ -118,8 +118,17 @@
 								<span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
 								<div class="border-bottom border-gray-300 mw-50 w-100"></div>
 							</div>
-							<x-auth-validation-errors class="alert alert-danger" :errors="$errors" />
-							<!--end::Separator-->
+						
+							@if($errors->any())
+							<div class="alert alert-danger">
+								<p><strong>Opps Something went wrong</strong></p>
+								<ul>
+									@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+							@endif	<!--end::Separator-->
 							<!--begin::Input group-->
 							<div class="row fv-row mb-7">
 								<!--begin::Col-->
