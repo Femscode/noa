@@ -119,16 +119,7 @@
 								<div class="border-bottom border-gray-300 mw-50 w-100"></div>
 							</div>
 						
-							@if($errors->any())
-							<div class="alert alert-danger">
-								<p><strong>Opps Something went wrong</strong></p>
-								<ul>
-									@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-									@endforeach
-								</ul>
-							</div>
-							@endif	<!--end::Separator-->
+							<!--end::Separator-->
 							<!--begin::Input group-->
 							<div class="row fv-row mb-7">
 								<!--begin::Col-->
