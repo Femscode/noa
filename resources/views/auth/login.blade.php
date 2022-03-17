@@ -84,7 +84,8 @@
 									<a href="/register" class="link-primary fw-bolder">Create an Account</a></div>
 									<!--end::Link-->
 								</div>
-								
+                                <x-auth-validation-errors class="alert alert-danger" :errors="$errors" />
+
 								<!--begin::Heading-->
 								<!--begin::Input group-->
 								<div class="fv-row mb-10">
