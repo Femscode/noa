@@ -5,22 +5,15 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
+ 
 
     use RegistersUsers;
 
@@ -29,7 +22,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -49,10 +42,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+      
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed','regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            'phone' => ['required'],
+            
         ]);
     }
 
@@ -64,10 +60,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+      
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
+           
+
         ]);
+        // Product::create([
+        //     'user_id' => $user->id,
+        //     'school_id' => $data['school_id'],
+        //     'name' => 'Rice',
+        //     'price' => 100,
+        //     'category_id' => $request->category_id,
+        // ]);
+
+
+        return $user;
     }
 }

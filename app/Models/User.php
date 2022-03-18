@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Models;
-// use App\Models\Order;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Order;
 
 class User extends Authenticatable
 {
@@ -18,18 +17,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'address',
-        'slug',
-        'restaurant_category',
-        'opening_hour',
-        'closing_hour',
-        'phone'
-    ];
+    protected $guarded = [];
+    protected $table = 'users';
+        
 
     /**
      * The attributes that should be hidden for serialization.
@@ -40,9 +30,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    public function orders() {
-        return $this->hasMany('App\Models\Order');
-    }
 
     /**
      * The attributes that should be cast.
